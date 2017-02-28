@@ -2,10 +2,10 @@
 ## MVP
 Visualization of Citi Bike trips in NYC/Brooklyn throughout the day, with options to view by age or gender filters
 
-[ ] Watch an animation of Citi Bike trips over the course of 24 hours
-[ ] Start, pause and move the time progress
-[ ] Filter by age or gender of riders
-[ ] Production README
+- [ ] Watch an animation of Citi Bike trips over the course of 24 hours
+- [ ] Start, pause and move the time progress
+- [ ] Filter by age or gender of riders
+- [ ] Production README
 
 ## Technologies & APIs
 * JavaScript
