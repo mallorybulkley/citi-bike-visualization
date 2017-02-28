@@ -1,6 +1,6 @@
 # Citi Bike Visualization
 ## MVP
-Visualization of Citi Bike trips in NYC/Brooklyn throughout the day, with options to view by age or gender filters
+Visualization of Citi Bike trips in NYC/Brooklyn in real time throughout the day, with options to view by age or gender filters
 
 - [ ] Watch an animation of Citi Bike trips over the course of 24 hours
 - [ ] Start, pause and move the time progress
@@ -14,8 +14,8 @@ Visualization of Citi Bike trips in NYC/Brooklyn throughout the day, with option
 
 Citi Bike’s API will provide the start and endpoints for each trip, as well as the duration. Google Maps Directions will provide routes between the start and end points. The speed can be determined by the trip duration.
 
-## Backend
-Database will hold the Citi Bike trip data:
+
+Data provided by Citi Bike:
 * Trip Duration (seconds)
 * Start Time and Date
 * Stop Time and Date
@@ -33,7 +33,7 @@ Database will hold the Citi Bike trip data:
 
 Figure out how to navigate the Citi Bike and Google Maps APIs to animate a single trip
 
-**Day 2: Visualization of trips over the course of a full day**
+**Day 2: Visualization of multiple trips in real time**
 
 Animate multiple trips, make sure overlapping routes are shown properly (heat map style visualization)
 
@@ -43,5 +43,4 @@ Add buttons to toggle filters by age group and gender (these details are provide
 
 **Bonus Features**
 
-* Add more information to filter by day of week, weather, etc.
-* Use the live Citi Bike API feed to show trips in real-time
+* Add a backend and more information to filter by day of week, weather, etc.
