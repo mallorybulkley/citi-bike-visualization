@@ -24,18 +24,20 @@ class CitiBikeViz {
 
   drawTrips () {
     this.trips.forEach(trip => {
-      const speed = trip.distance / trip.duration;
+      const averageSpeed = trip.distance / trip.duration;
       let i = 0;
-      this.drawStep(trip.distance, trip.path, speed, i);
+      setTimeout( () => {
+        this.drawStep(trip.distance, trip.path, averageSpeed, i);
+      }, trip.time)
     })
   }
 
-  drawStep (distance, path, speed, i) {
+  drawStep (distance, path, averageSpeed, i) {
     if (i === path.length - 1) { return null };
     let step = new google.maps.Circle({
       strokeColor: '#FFFFFF',
       strokeOpacity: 0.8,
-      strokeWeight: 1,
+      strokeWeight: 0.1,
       fillColor: 'blue',
       fillOpacity: 0.35,
       map: this.map,
@@ -43,27 +45,23 @@ class CitiBikeViz {
       radius: 75
     });
 
-    let stepSpeed = this.calculateStepSpeed(distance, speed, path[i], path[i + 1]);
+    let stepSpeed = this.calculateStepSpeed(distance, averageSpeed, path[i], path[i + 1]);
     setTimeout( () => this.clearStep(step), stepSpeed);
-    setTimeout( () => this.drawStep(distance, path, speed, i + 1), stepSpeed);
+    setTimeout( () => this.drawStep(distance, path, averageSpeed, i + 1), stepSpeed);
   }
 
   clearStep (step) {
     step.setMap(null);
   }
 
-  calculateStepSpeed (distance, speed, pointA, pointB) {
+  calculateStepSpeed (distance, averageSpeed, pointA, pointB) {
     let a = new google.maps.LatLng(pointA);
     let b = new google.maps.LatLng(pointB);
 
-    return (google.maps.geometry.spherical.computeDistanceBetween(a, b) / distance) / speed * 20000;
+    // segment in meters / total distance in meters
+    // averageSpeed in meters/sec * 60 = m/min
+    return (google.maps.geometry.spherical.computeDistanceBetween(a, b) / distance) * (averageSpeed * 6000);
   }
-
-  parseTime (time) {
-    midnight = new Date(2016, 11, 1);
-    return (time - midnight) / 1000;
-  }
-
 }
 
 $(() => {
