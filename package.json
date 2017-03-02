@@ -1,0 +1,26 @@
+{
+  "name": "citi-bike-visualization",
+  "version": "1.0.0",
+  "description": "Visualization of Citi Bike trips in NYC/Brooklyn over the course of a day, with options to view by age or gender filters",
+  "main": "index.js",
+  "dependencies": {
+    "papaparse": "^4.1.4",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mallorybulkley/citi-bike-visualization.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mallorybulkley/citi-bike-visualization/issues"
+  },
+  "homepage": "https://github.com/mallorybulkley/citi-bike-visualization#readme"
+}
