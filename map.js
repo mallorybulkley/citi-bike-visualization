@@ -106,37 +106,47 @@ const mapStyles = [
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 40.765, lng: -73.975 },
-    zoom: 13,
+    center: { lat: 40.745, lng: -73.975 },
+    zoom: 12,
     styles: mapStyles
   });
 
-  map.data.setStyle(function(feature) {
-    let mag = Math.exp(parseFloat(feature.getProperty('mag'))) * 0.1;
-    return /** @type {google.maps.Data.StyleOptions} */({
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: mag,
-        fillColor: '#f00',
-        fillOpacity: 0.35,
-        strokeWeight: 0
+  map.data.setStyle({
+    fillColor: 'green',
+    strokeWeight: 1
+  });
+
+  let trips = [];
+
+  $.get({
+    url: './2016-12-1-first100.csv'
+  }).then((file) => {
+    Papa.parse(file, {
+      header: true,
+      complete: function(results) {
+      	console.log("Parsing complete:");
+        results.data.forEach(row => {
+          trips.push({
+            "start": {
+              "lat": parseFloat(row['Start Station Latitude']),
+              "lng": parseFloat(row['Start Station Longitude'])
+            },
+            "end": {
+              "lat": parseFloat(row['End Station Latitude']),
+              "lng": parseFloat(row['End Station Longitude'])
+            },
+            "duration": parseInt(row['Trip Duration']),
+            "startTime": new Date(row['Start Time'])
+          })
+        });
+
+        drawTrips(trips, map);
       }
     });
   });
+}
 
-  trips = [
-    {
-      start: { lat: 40.76915505, lng: -73.98191841 },
-      end: { lat: 40.7546011026, lng: -73.971878855 },
-      duration: 528
-    },
-    {
-      start: { lat: 40.7817212, lng: -73.94594 },
-      end: { lat: 40.7849032, lng: -73.950503 },
-      duration: 2680
-    }
-  ];
-
+const drawTrips = (trips, map) => {
   const drawStep = (distance, path, speed, i) => {
     if (i === path.length - 1) { return null };
     let step = new google.maps.Circle({
@@ -163,27 +173,39 @@ function initMap() {
     return (google.maps.geometry.spherical.computeDistanceBetween(pointA, pointB) / distance) / speed * 20000;
   }
 
+  const midnight = new Date(2016, 11, 1);
+
+  const parseTime = (time) => {
+    // console.log("ms since midnight: " + ((time - midnight)));
+    // console.log("seconds since midnight: " + ((time - midnight) / 1000));
+    // console.log("10 second increments since midnight: " + ((time - midnight) / 1000 / 6));
+    return (time - midnight) / 20;
+  };
+
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
 
   trips.forEach(trip => {
-    let request = {
-      origin: trip.start,
-      destination: trip.end,
-      travelMode: 'BICYCLING'
-    };
-
-
-    directionsService.route(request, function(result, status) {
-      if (status == 'OK') {
-        let polyline = result.routes[0].overview_polyline;
-        let path = result.routes[0].overview_path;
-        let distance = result.routes[0].legs[0].distance.value;
-        const speed = distance / trip.duration;
-        let i = 0;
-        drawStep(distance, path, speed, i)
+    // console.log("timeout: " + parseTime(trip.startTime));
+    setTimeout( () => {
+      let request = {
+        origin: trip.start,
+        destination: trip.end,
+        travelMode: 'BICYCLING'
       };
-    });
+
+      directionsService.route(request, function(result, status) {
+        console.log(status);
+        if (status == 'OK') {
+          let polyline = result.routes[0].overview_polyline;
+          let path = result.routes[0].overview_path;
+          let distance = result.routes[0].legs[0].distance.value;
+          const speed = distance / trip.duration;
+          let i = 0;
+          drawStep(distance, path, speed, i)
+        };
+      });
+    }, parseTime(trip.startTime))
   });
 };
