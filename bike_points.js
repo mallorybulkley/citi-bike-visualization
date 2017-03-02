@@ -24,6 +24,11 @@ function initMap() {
       start: { lat: 40.76915505, lng: -73.98191841 },
       end: { lat: 40.7546011026, lng: -73.971878855 },
       duration: 528
+    },
+    {
+      start: { lat: 40.7817212, lng: -73.94594 },
+      end: { lat: 40.7849032, lng: -73.950503 },
+      duration: 2680
     }
   ];
 
@@ -53,16 +58,14 @@ function initMap() {
   }
 
   const calculateStepSpeed = (distance, speed, pointA, pointB) => {
-    x = speed * (google.maps.geometry.spherical.computeDistanceBetween(pointA, pointB)) / distance * 5000;
-    console.log(x);
-    return x;
+    return (google.maps.geometry.spherical.computeDistanceBetween(pointA, pointB) / distance) / speed * 20000;
   }
 
-  trips.forEach(trip => {
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
 
+  trips.forEach(trip => {
     let request = {
       origin: trip.start,
       destination: trip.end,
@@ -78,17 +81,12 @@ function initMap() {
         const speed = distance / trip.duration;
         let i = 0;
         drawStep(distance, path, speed, i)
+        console.log(distance);
       };
     });
   });
 }
 
-
-// let geoPoints = {
-//   'type': 'GeometryCollection',
-//   'geometries': []
-// };
-//
 // $.get({
 //   url: './201612-citibike-tripdata.csv'
 // }).then((file) => {
