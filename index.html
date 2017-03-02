@@ -3,15 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>Citi Bike Viz</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="./papaparse.min.js"></script> -->
-    <script src="bike_points.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="./papaparse.min.js"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry">
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBhuQ2todKa8LRbQ6_-WIkBIRCbN7542Wc",
+        authDomain: "citibikeviz.firebaseapp.com",
+        databaseURL: "https://citibikeviz.firebaseio.com",
+        storageBucket: "citibikeviz.appspot.com",
+        messagingSenderId: "807289653110"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script src="map_style.js" charset="utf-8"></script>
+    <script src="map.js" charset="utf-8"></script>
+    <script src="load_trips.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
 
     <div id="map"></div>
-
 
   </body>
 </html>
