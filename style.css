@@ -1,9 +1,52 @@
 #map {
   height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#clock {
+  position: absolute;
+  right: 0%;
+  padding: 10px;
+  color: white;
+  font-size: 1.5em;
+  margin: 10px;
+  width: 110px;
+  text-align: right;
 }
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #CCCCCC;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+}
+
+.left {
+  width: 66%;
+  margin: 25px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+input, label {
+  cursor: pointer;
 }
