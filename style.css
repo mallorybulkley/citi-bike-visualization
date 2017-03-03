@@ -16,6 +16,17 @@
   text-align: right;
 }
 
+#count {
+  position: absolute;
+  right: 0%;
+  padding: 10px;
+  color: white;
+  margin: 10px;
+  width: 110px;
+  text-align: right;
+  top: 30px;
+}
+
 html, body {
   height: 100%;
   margin: 0;

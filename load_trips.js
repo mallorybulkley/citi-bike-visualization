@@ -7,6 +7,7 @@ class CitiBikeViz {
     this.map = window.map;
     this.timers = [];
     this.circles = [];
+    this.count = 0;
     this.clock = moment([2016, 11, 1]);
 
     this.colorByGender = false;
@@ -26,10 +27,14 @@ class CitiBikeViz {
 
   startClock () {
     let clock = document.getElementById('clock');
+    let count = document.getElementById('count');
+
     this.clockInterval = setInterval( () => {
       this.clock.add(1, "minutes")
       clock.innerHTML = this.clock.format("h:mm a");
+      count.innerHTML = this.count + " bikes";
     }, 100);
+
   }
 
   loadTrips () {
@@ -56,7 +61,7 @@ class CitiBikeViz {
   }
 
   drawStep (distance, path, averageSpeed, i, gender) {
-    if (i === path.length - 1) { return null };
+    if (i === path.length) { return null };
 
 
     let color = 'green';
@@ -81,15 +86,18 @@ class CitiBikeViz {
 
     let stepSpeed = this.calculateStepSpeed(distance, averageSpeed, path[i], path[i + 1]);
     this.circles.push(step);
+    this.count += 1;
     this.timers.push(setTimeout( () => this.clearStep(step), stepSpeed));
     this.timers.push(setTimeout( () => this.drawStep(distance, path, averageSpeed, i + 1, gender), stepSpeed));
   }
 
   clearStep (step) {
     step.setMap(null);
+    this.count -= 1;
   }
 
   calculateStepSpeed (distance, averageSpeed, pointA, pointB) {
+    if (!pointB) { return averageSpeed }
     let a = new google.maps.LatLng(pointA);
     let b = new google.maps.LatLng(pointB);
 
@@ -110,6 +118,7 @@ class CitiBikeViz {
       this.circles[i].setMap(null);
     }
     this.circles = [];
+    this.count = 0;
     this.resetClock();
     this.startClock();
     this.drawTrips();
