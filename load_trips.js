@@ -50,6 +50,7 @@ class CitiBikeViz {
   }
 
   drawTrips () {
+    this.count = 0;
     this.trips.forEach(trip => {
       let i = 0;
 
@@ -82,9 +83,10 @@ class CitiBikeViz {
       radius: 75
     });
 
-    let stepSpeed = this.calculateStepSpeed(distance, duration, path[i], path[i + 1]);
     this.circles.push(step);
     this.count += 1;
+
+    let stepSpeed = this.calculateStepSpeed(distance, duration, path[i], path[i + 1]);
     this.timers.push(setTimeout( () => this.clearStep(step), stepSpeed));
     this.timers.push(setTimeout( () => this.drawStep(distance, path, duration, i + 1, gender), stepSpeed));
   }
@@ -115,9 +117,15 @@ class CitiBikeViz {
       this.circles[i].setMap(null);
     }
     this.circles = [];
-    this.count = 0;
+
+    for (let i = 0; i < this.timers.length; i++) {
+      clearTimeout(this.timers[i]);
+    }
+    this.timers = [];
+
     this.resetClock();
     this.startClock();
+
     this.drawTrips();
   }
 
