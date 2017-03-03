@@ -51,18 +51,16 @@ class CitiBikeViz {
 
   drawTrips () {
     this.trips.forEach(trip => {
-      const averageSpeed = trip.distance / trip.duration;
       let i = 0;
 
-      setTimeout( () => {
-        this.drawStep(trip.distance, trip.path, averageSpeed, i, trip.gender);
-      }, trip.time)
+      this.timers.push(setTimeout( () => {
+        this.drawStep(trip.distance, trip.path, trip.duration, i, trip.gender);
+      }, (trip.startTime * (5/3))))
     })
   }
 
-  drawStep (distance, path, averageSpeed, i, gender) {
+  drawStep (distance, path, duration, i, gender) {
     if (i === path.length) { return null };
-
 
     let color = 'green';
     if (this.colorByGender) {
@@ -84,11 +82,11 @@ class CitiBikeViz {
       radius: 75
     });
 
-    let stepSpeed = this.calculateStepSpeed(distance, averageSpeed, path[i], path[i + 1]);
+    let stepSpeed = this.calculateStepSpeed(distance, duration, path[i], path[i + 1]);
     this.circles.push(step);
     this.count += 1;
     this.timers.push(setTimeout( () => this.clearStep(step), stepSpeed));
-    this.timers.push(setTimeout( () => this.drawStep(distance, path, averageSpeed, i + 1, gender), stepSpeed));
+    this.timers.push(setTimeout( () => this.drawStep(distance, path, duration, i + 1, gender), stepSpeed));
   }
 
   clearStep (step) {
@@ -96,13 +94,12 @@ class CitiBikeViz {
     this.count -= 1;
   }
 
-  calculateStepSpeed (distance, averageSpeed, pointA, pointB) {
-    if (!pointB) { return averageSpeed }
+  calculateStepSpeed (distance, duration, pointA, pointB) {
+    if (!pointB) return 0;
     let a = new google.maps.LatLng(pointA);
     let b = new google.maps.LatLng(pointB);
 
-    // averageSpeed in meters/sec * 60 = meters/min * 100 (10 min === 1 sec)
-    return (google.maps.geometry.spherical.computeDistanceBetween(a, b) / distance) * (averageSpeed * 6000);
+    return (google.maps.geometry.spherical.computeDistanceBetween(a, b) / distance) * (duration * (5/3));
   }
 
   pause () {
