@@ -11,19 +11,13 @@ class CitiBikeViz {
     this.clock = moment([2016, 11, 1]);
 
     this.colorByGender = false;
+    this.colorByAge = false;
   }
 
   initFirebase () {
     this.database = firebase.database();
     this.storage = firebase.storage();
   };
-
-  // filter (childData) {
-  //   if (this.filters.length === 0) return true;
-  //   if (this.filters.some((filter) => (childData[filter.key] !== filter.value))) {
-  //     return false;
-  //   }
-  // }
 
   startClock () {
     let clock = document.getElementById('clock');
@@ -55,20 +49,36 @@ class CitiBikeViz {
       let i = 0;
 
       this.timers.push(setTimeout( () => {
-        this.drawStep(trip.distance, trip.path, trip.duration, i, trip.gender);
+        this.drawStep(trip.distance, trip.path, trip.duration, i, trip.gender, trip.birthYear);
       }, (trip.startTime * (5/3))))
     })
   }
 
-  drawStep (distance, path, duration, i, gender) {
+  drawStep (distance, path, duration, i, gender, birthYear) {
     if (i === path.length) { return null };
-
     let color = 'green';
+
     if (this.colorByGender) {
       if (gender === 1) {
         color = 'blue';
       } else if (gender === 2) {
         color = 'magenta';
+      }
+    }
+
+    if (this.colorByAge) {
+      if (birthYear > 1995) {
+        // Gen Z
+        color = 'magenta';
+      } else if (birthYear > 1979) {
+        // Gen Y
+        color = 'blue';
+      } else if (birthYear > 1964) {
+        // Gen X
+        color = 'red';
+      } else if (birthYear > 1940) {
+        // Baby Boomer
+        color = 'yellow';
       }
     }
 
@@ -88,7 +98,7 @@ class CitiBikeViz {
 
     let stepSpeed = this.calculateStepSpeed(distance, duration, path[i], path[i + 1]);
     this.timers.push(setTimeout( () => this.clearStep(step), stepSpeed));
-    this.timers.push(setTimeout( () => this.drawStep(distance, path, duration, i + 1, gender), stepSpeed));
+    this.timers.push(setTimeout( () => this.drawStep(distance, path, duration, i + 1, gender, birthYear), stepSpeed));
   }
 
   clearStep (step) {
@@ -146,6 +156,16 @@ $(() => {
   const genderToggle = document.getElementById('gender');
   genderToggle.addEventListener('click', () => {
     citiBikeViz.colorByGender = !citiBikeViz.colorByGender;
+    ageToggle.checked = false;
+    citiBikeViz.colorByAge = false;
+    citiBikeViz.restart();
+  })
+
+  const ageToggle = document.getElementById('age');
+  ageToggle.addEventListener('click', () => {
+    citiBikeViz.colorByAge = !citiBikeViz.colorByAge;
+    genderToggle.checked = false;
+    citiBikeViz.colorByGender = false;
     citiBikeViz.restart();
   })
 

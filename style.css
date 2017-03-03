@@ -44,6 +44,16 @@ ul, li {
   padding: 0;
 }
 
+li > ul {
+  display: flex;
+  font-size: small;
+  text-align: center;
+}
+
+li > ul > li {
+  margin: 5px 0 0 20px;
+}
+
 .left {
   width: 66%;
   margin: 25px;
@@ -60,4 +70,21 @@ h2 {
 
 input, label {
   cursor: pointer;
+  vertical-align: center;
+}
+
+.magenta {
+  color: magenta;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
 }
