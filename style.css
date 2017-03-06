@@ -58,12 +58,19 @@ body {
 ul, li {
   list-style: none;
   padding: 0;
+  text-align: left;
 }
 
 .left {
   width: 66%;
   margin: 25px;
   position: relative;
+  text-align: center;
+}
+
+.options {
+  display: inline-flex;
+  flex-direction: column;
 }
 
 h1 {

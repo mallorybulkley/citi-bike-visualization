@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Citi Bike Viz</title>
+    <title>A Day in the Life of Citi Bike</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Cardo|Montserrat" rel="stylesheet">
     <script src="https://use.fontawesome.com/2f18af269b.js"></script>
@@ -36,21 +36,23 @@
       <h1>A Day in the Life of Citi Bike</h1>
       <p>A visualization of Citi Bike trips taken on December 1, 2016.</p>
 
-      <h2>Options</h2>
-      <button id="pause">Stop</button>
-      <button id="restart">Restart</button>
-      <ul>
-        <li>
-          <label>
-            <input type="checkbox" id="gender">Color by gender</input>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" id="age">Color by age group</input>
-          </label>
-        </li>
-      </ul>
+      <section class="options">
+        <h2>Options</h2>
+        <button id="pause">Stop</button>
+        <button id="restart">Restart</button>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" id="gender">Color by gender</input>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="age">Color by age group</input>
+            </label>
+          </li>
+        </ul>
+      </section>
 
       <footer>
         <section class="icons">
@@ -82,7 +84,7 @@
         Baby Boomer <br/> 1940-1964
       </li>
     </ul>
-    
+
     <ul id="gender-legend">
       <li class="magenta">&#9830;
         Female
