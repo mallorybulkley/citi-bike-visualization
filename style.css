@@ -27,13 +27,18 @@
   top: 30px;
 }
 
-#legend {
+#legend, #gender-legend {
+  display: none;
+  flex-direction: column;
+  border: 1px solid #333333;
+  width: 110px;
   position: absolute;
-  right: 50%;
-  font-size: small;
-  padding: 10px;
-  background-color: rgba(100, 100, 100, 0.5);
-  margin-top: 10px;
+  top: 0%;
+  left: 42%;
+  margin: 5px;
+  z-index: 1;
+  background-color: #CCCCCC;
+  opacity: .85;
 }
 
 html, body {
@@ -41,7 +46,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #CCCCCC;
-  font-family: sans-serif;
+  font-family: 'Cardo', serif;
 }
 
 body {
@@ -56,11 +61,10 @@ ul, li {
 li > ul {
   display: flex;
   font-size: small;
-  text-align: center;
 }
 
 li > ul > li {
-  margin: 5px 0 0 20px;
+  margin: 5px;
 }
 
 .left {
@@ -71,10 +75,12 @@ li > ul > li {
 h1 {
   text-align: center;
   font-size: 2em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h2 {
   font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 input, label {

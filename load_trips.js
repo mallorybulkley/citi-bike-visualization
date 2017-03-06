@@ -154,11 +154,14 @@ $(() => {
   pauseButton.addEventListener('click', citiBikeViz.pause.bind(citiBikeViz))
 
   const genderToggle = document.getElementById('gender');
+  const genderLegend = document.getElementById('gender-legend');
   genderToggle.addEventListener('click', () => {
     citiBikeViz.colorByGender = !citiBikeViz.colorByGender;
     ageToggle.checked = false;
     citiBikeViz.colorByAge = false;
     citiBikeViz.restart();
+    genderLegend.style.display = citiBikeViz.colorByGender ? 'block' : 'none';
+    legend.style.display = citiBikeViz.colorByAge ? 'block' : 'none';
   })
 
   const ageToggle = document.getElementById('age');
@@ -167,6 +170,8 @@ $(() => {
     genderToggle.checked = false;
     citiBikeViz.colorByGender = false;
     citiBikeViz.restart();
+    legend.style.display = citiBikeViz.colorByAge ? 'block' : 'none';
+    genderLegend.style.display = citiBikeViz.colorByGender ? 'block' : 'none';
   })
 
   const restartButton = document.getElementById('restart');
