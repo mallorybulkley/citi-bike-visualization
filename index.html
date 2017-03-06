@@ -5,7 +5,7 @@
     <title>Citi Bike Viz</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="./moment.js"></script>
-    <!-- <script src="./papaparse.min.js"></script> -->
+    <script src="./papaparse.min.js"></script>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry">
     </script>
@@ -46,25 +46,28 @@
           <label>
             <input type="checkbox" id="age">Color by age group</input>
           </label>
-          <ul>
-            <li class="magenta">
-              Gen Z <br/> born after 1995
-            </li>
-            <li class="blue">
-              Gen Y <br/> 1980-1995
-            </li>
-            <li class="red">
-              Gen X <br/> 1965-1979
-            </li>
-            <li class="yellow">
-              Baby Boomer <br/> 1940-1964
-            </li>
-          </ul>
+
         </li>
       </ul>
     </section>
     <div id="map"></div>
     <span id="clock"></span>
     <span id="count"></span>
+    <!-- <span id="legend">
+      <ul>
+      <li class="magenta">
+        Gen Z <br/> born after 1995
+      </li>
+      <li class="blue">
+        Gen Y <br/> 1980-1995
+      </li>
+      <li class="red">
+        Gen X <br/> 1965-1979
+      </li>
+      <li class="yellow">
+        Baby Boomer <br/> 1940-1964
+      </li>
+    </ul>
+  </span> -->
   </body>
 </html>

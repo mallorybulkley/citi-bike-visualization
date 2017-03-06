@@ -27,6 +27,15 @@
   top: 30px;
 }
 
+#legend {
+  position: absolute;
+  right: 50%;
+  font-size: small;
+  padding: 10px;
+  background-color: rgba(100, 100, 100, 0.5);
+  margin-top: 10px;
+}
+
 html, body {
   height: 100%;
   margin: 0;
