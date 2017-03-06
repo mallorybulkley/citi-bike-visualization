@@ -35,10 +35,12 @@
   position: absolute;
   top: 0%;
   left: 42%;
+  padding: 5px;
   margin: 5px;
   z-index: 1;
   background-color: #CCCCCC;
   opacity: .85;
+  font-size: small;
 }
 
 html, body {
@@ -56,15 +58,6 @@ body {
 ul, li {
   list-style: none;
   padding: 0;
-}
-
-li > ul {
-  display: flex;
-  font-size: small;
-}
-
-li > ul > li {
-  margin: 5px;
 }
 
 .left {
