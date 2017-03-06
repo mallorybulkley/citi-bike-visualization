@@ -70,6 +70,7 @@ li > ul > li {
 .left {
   width: 66%;
   margin: 25px;
+  position: relative;
 }
 
 h1 {
@@ -86,6 +87,20 @@ h2 {
 input, label {
   cursor: pointer;
   vertical-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
 }
 
 .magenta {
