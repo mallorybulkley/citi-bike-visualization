@@ -38,17 +38,22 @@
 
       <section class="options">
         <h2>Options</h2>
-        <button id="pause">Stop</button>
+        <button id="stop">Stop</button>
         <button id="restart">Restart</button>
         <ul>
           <li>
             <label>
-              <input type="checkbox" id="gender">Color by gender</input>
+              <input type="radio" name="options" value="default" id="default" checked>Default</input>
             </label>
           </li>
           <li>
             <label>
-              <input type="checkbox" id="age">Color by age group</input>
+              <input type="radio" name="options" value="gender" id="gender">Color by gender</input>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio"  name="options" value="age" id="age">Color by age group</input>
             </label>
           </li>
         </ul>

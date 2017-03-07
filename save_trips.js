@@ -14,7 +14,7 @@ class CitiBikeViz {
     trips.forEach((trip, i) => {
       setTimeout(() => {
         this.processTrip(trip);
-      }, 900 * i)
+      }, 2200 * i)
     })
   }
 
@@ -62,7 +62,7 @@ class CitiBikeViz {
       "startTime": this.parseTime(startTime),
       "bikeId": parseInt(trip['Bike ID']),
       "userType": trip['User Type'],
-      "birthYear": parseInt(trip['Birth Year']),
+      "birthYear": trip['Birth Year'] ? parseInt(trip['Birth Year']) : 0,
       "gender": parseInt(trip['Gender']),
       "path": path,
       "distance": routeDetails['distance'],
@@ -90,7 +90,7 @@ class CitiBikeViz {
 window.onload = function() {
   window.citiBikeViz = new CitiBikeViz();
   $.get({
-      url: './2016-12-1-first500.csv'
+      url: './csv/2016-12-1-p6.csv'
     }).then(file => {
       Papa.parse(file, {
         header: true,

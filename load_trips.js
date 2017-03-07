@@ -114,7 +114,7 @@ class CitiBikeViz {
     return (google.maps.geometry.spherical.computeDistanceBetween(a, b) / distance) * (duration * (5/3));
   }
 
-  pause () {
+  stop () {
     for (let i = 0; i < this.timers.length; i++) {
       clearTimeout(this.timers[i]);
     }
@@ -150,8 +150,17 @@ $(() => {
   window.citiBikeViz = new CitiBikeViz();
   citiBikeViz.loadTrips();
 
-  const pauseButton = document.getElementById('pause');
-  pauseButton.addEventListener('click', citiBikeViz.pause.bind(citiBikeViz))
+  const stopButton = document.getElementById('stop');
+  stopButton.addEventListener('click', citiBikeViz.stop.bind(citiBikeViz));
+
+  const defaultToggle = document.getElementById('default');
+  defaultToggle.addEventListener('click', () => {
+    citiBikeViz.colorByGender = false;
+    citiBikeViz.colorByAge = false;
+    citiBikeViz.restart();
+    genderLegend.style.display = 'none';
+    legend.style.display = 'none';
+  })
 
   const genderToggle = document.getElementById('gender');
   const genderLegend = document.getElementById('gender-legend');
