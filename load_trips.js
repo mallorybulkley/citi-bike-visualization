@@ -1,10 +1,11 @@
 class CitiBikeViz {
   constructor () {
     this.initFirebase();
-    this.tripsRef = this.database.ref('trips');
+    this.tripsRef = this.database.ref('new-trips');
 
     this.trips = [];
     this.map = window.map;
+    this.bounds = this.map.getBounds();
     this.timers = [];
     this.circles = [];
     this.count = 0;
@@ -82,13 +83,16 @@ class CitiBikeViz {
       }
     }
 
+    this.bounds = this.bounds || this.map.getBounds();
+    let inBounds = this.bounds.contains(path[i]);
+
     let step = new google.maps.Circle({
       strokeColor: '#FFFFFF',
       strokeOpacity: 0.8,
       strokeWeight: 0.1,
       fillColor: color,
       fillOpacity: 0.35,
-      map: this.map,
+      map: inBounds ? this.map : null,
       center: path[i],
       radius: 75
     });
@@ -185,4 +189,8 @@ $(() => {
 
   const restartButton = document.getElementById('restart');
   restartButton.addEventListener('click', citiBikeViz.restart.bind(citiBikeViz))
+
+  citiBikeViz.map.addListener('idle', () => {
+    citiBikeViz.bounds = citiBikeViz.map.getBounds();
+  });
 })
