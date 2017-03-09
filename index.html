@@ -10,7 +10,7 @@
     <script src="./moment.js"></script>
     <script src="./papaparse.min.js"></script>
     <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
     </script>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -28,7 +28,8 @@
 
     <script src="map_style.js" charset="utf-8"></script>
     <script src="map.js" charset="utf-8"></script>
-    <script src="load_trips.js" charset="utf-8"></script>
+    <script src="trip.js" charset="utf-8"></script>
+    <script src="citi_bike_viz.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
@@ -40,6 +41,7 @@
         <h2>Options</h2>
         <button id="stop">Stop</button>
         <button id="restart">Restart</button>
+        <input type="range" id="speed" min="-12" max="-1" value="-1">Speed</input>
         <ul>
           <li>
             <label>

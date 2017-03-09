@@ -1,18 +1,20 @@
 class Trip {
-  constructor (birthYear, distance, duration, gender, start, path, startTime, map) {
+  constructor (map, trip) {
+    window.trip = this;
     this.map = map;
-    this.distance = distance;
-    this.duration = duration;
-    this.start = start;
-    this.path = path;
-    this.startTime = startTime;
+    this.distance = trip.distance;
+    this.duration = trip.duration;
+    this.start = trip.start;
+    this.path = trip.path;
+    this.end = trip.path.length;
+    this.startTime = trip.startTime;
 
-    this.gender = gender;
-    this.birthYear = birthYear;
+    this.gender = trip.gender;
+    this.birthYear = trip.birthYear;
     this.color = 'green';
 
     this.tick = 0;
-    this.tickInterval = startTime;
+    this.tickInterval = trip.startTime;
     this.currentStep = null;
     this.circle = null;
   }
@@ -25,19 +27,21 @@ class Trip {
       fillColor: this.color,
       fillOpacity: 0.35,
       map: this.map,
-      center: path[0],
+      center: this.path[0],
       radius: 75
     });
 
     this.currentStep = 0;
+    window.tripCount += 1;
   }
 
   calculateInterval (step) {
-    if (step === this.path.length) return 100; // last point in the path
+    if (step === this.end) return 0; // last point in the path
 
-    pointA = new google.maps.LatLng(this.path[step]);
-    pointB = new google.maps.LatLng(this.path[step + 1]);
+    let pointA = new google.maps.LatLng(this.path[step]);
+    let pointB = new google.maps.LatLng(this.path[step + 1]);
 
+    // seconds IRL
     return google.maps.geometry.spherical.computeDistanceBetween(pointA, pointB) / this.distance * this.duration;
   }
 
@@ -78,18 +82,21 @@ class Trip {
   endTrip () {
     this.circle.setMap(null);
     this.circle = null;
+    window.tripCount -= 1;
   }
 
   incrementTick () {
     this.tick += 1;
 
-    if (this.tick === this.tickInterval) {
+    if (this.tick >= this.tickInterval) {
       this.moveCircle();
     }
   }
 
   moveCircle () {
-    if (this.currentStep) {
+    if (this.currentStep === this.end) {
+      this.endTrip();
+    } else if (this.currentStep !== null) {
       // set the center and reset the tick and tickInterval
       this.currentStep += 1;
       this.circle.setCenter(this.path[this.currentStep]);
@@ -99,7 +106,7 @@ class Trip {
     }
 
     this.tick = 0;
-    this.tickInterval = calculateInterval(this.currentStep);
+    this.tickInterval = this.calculateInterval(this.currentStep);
   }
 }
 
@@ -116,6 +123,6 @@ class Trip {
 
 // CitiBikeViz controls the master time and holds an array of all trips
   // sends a tick out to every trip
-    trips.forEach(trip => {
-      trip.incrementTick();
-    });
+    // trips.forEach(trip => {
+    //   trip.incrementTick();
+    // });
