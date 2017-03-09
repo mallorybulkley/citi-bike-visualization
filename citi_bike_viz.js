@@ -6,6 +6,7 @@ class CitiBikeViz {
     // this.bounds = this.map.getBounds();
     this.clock = moment([2016, 11, 1]);
     this.speed = 10;
+    this.trips = [];
   }
 
   initFirebase () {
@@ -58,6 +59,7 @@ class CitiBikeViz {
 
   restart () {
     this.resetClock();
+    this.trips.forEach(trip => trip.endTrip());
     this.startClock();
     this.buildTrips();
   }

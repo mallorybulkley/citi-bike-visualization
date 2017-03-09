@@ -80,8 +80,11 @@ class Trip {
   }
 
   endTrip () {
-    this.circle.setMap(null);
-    window.tripCount -= 1;
+    if (this.circle) {
+      this.circle.setMap(null);
+      window.tripCount -= 1;
+    }
+    this.currentStep = null;
   }
 
   incrementTick () {
@@ -95,7 +98,6 @@ class Trip {
   moveCircle () {
     if (this.currentStep === this.end) {
       this.endTrip();
-      this.currentStep = null;
     } else if (this.currentStep !== null) {
       // set the center and reset the tick and tickInterval
       this.currentStep += 1;
