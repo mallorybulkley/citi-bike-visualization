@@ -1,20 +1,20 @@
 class Trip {
   constructor (birthYear, distance, duration, gender, start, path, startTime, map) {
-    this.birthYear = birthYear;
+    this.map = map;
     this.distance = distance;
     this.duration = duration;
-    this.gender = gender;
     this.start = start;
     this.path = path;
     this.startTime = startTime;
-    this.map = map;
+
+    this.gender = gender;
+    this.birthYear = birthYear;
+    this.color = 'green';
 
     this.tick = 0;
     this.tickInterval = startTime;
-    this.currentStep = 0;
+    this.currentStep = null;
     this.circle = null;
-
-    this.color = 'green';
   }
 
   beginTrip () {
@@ -28,8 +28,10 @@ class Trip {
       center: path[0],
       radius: 75
     });
+
+    this.currentStep = 0;
   }
-  
+
   calculateInterval (step) {
     if (step === this.path.length) return 100; // last point in the path
 
@@ -68,11 +70,14 @@ class Trip {
       }
     }
 
-    this.circle.setOptions({ fillColor: this.color });
+    if (this.circle) {
+      this.circle.setOptions({ fillColor: this.color });
+    }
   }
 
   endTrip () {
     this.circle.setMap(null);
+    this.circle = null;
   }
 
   incrementTick () {
@@ -84,9 +89,14 @@ class Trip {
   }
 
   moveCircle () {
-    // set the center and reset the tick and tickInterval
-    this.currentStep += 1;
-    this.circle.setCenter(this.path[this.currentStep]);
+    if (this.currentStep) {
+      // set the center and reset the tick and tickInterval
+      this.currentStep += 1;
+      this.circle.setCenter(this.path[this.currentStep]);
+    } else {
+      // start the trip
+      this.beginTrip();
+    }
 
     this.tick = 0;
     this.tickInterval = calculateInterval(this.currentStep);
