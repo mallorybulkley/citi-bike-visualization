@@ -6,7 +6,7 @@ class Trip {
     this.duration = trip.duration;
     this.start = trip.start;
     this.path = trip.path;
-    this.end = trip.path.length;
+    this.end = trip.path.length - 1;
     this.startTime = trip.startTime;
 
     this.gender = trip.gender;
@@ -47,31 +47,31 @@ class Trip {
 
   colorByAttribute (attribute) {
     if (attribute === 'gender') {
-      if (gender === 1) {
+      if (this.gender === 1) {
         this.color = 'blue';
-      } else if (gender === 2) {
+      } else if (this.gender === 2) {
         this.color = 'magenta';
       } else {
         this.color = 'green'
       }
-    }
-
-    if (attribute === 'age') {
-      if (birthYear > 1995) {
+    } else if (attribute === 'age') {
+      if (this.birthYear > 1995) {
         // Gen Z
         this.color = 'magenta';
-      } else if (birthYear > 1979) {
+      } else if (this.birthYear > 1979) {
         // Gen Y
         this.color = 'blue';
-      } else if (birthYear > 1964) {
+      } else if (this.birthYear > 1964) {
         // Gen X
         this.color = 'red';
-      } else if (birthYear > 1940) {
+      } else if (this.birthYear > 1940) {
         // Baby Boomer
         this.color = 'yellow';
       } else {
         this.color = 'green';
       }
+    } else if (attribute === 'default') {
+      this.color = 'green';
     }
 
     if (this.circle) {
@@ -81,7 +81,6 @@ class Trip {
 
   endTrip () {
     this.circle.setMap(null);
-    this.circle = null;
     window.tripCount -= 1;
   }
 
@@ -96,6 +95,7 @@ class Trip {
   moveCircle () {
     if (this.currentStep === this.end) {
       this.endTrip();
+      this.currentStep = null;
     } else if (this.currentStep !== null) {
       // set the center and reset the tick and tickInterval
       this.currentStep += 1;

@@ -5,7 +5,7 @@ class CitiBikeViz {
     this.map = window.map;
     // this.bounds = this.map.getBounds();
     this.clock = moment([2016, 11, 1]);
-    this.speed = 100;
+    this.speed = 10;
   }
 
   initFirebase () {
@@ -40,10 +40,15 @@ class CitiBikeViz {
   buildTrips () {
     window.tripCount = 0;
     this.trips = []
-    this.tripData.forEach((trip, i) => {
-      if (i > 5) return;
+    this.tripData.forEach(trip => {
       this.trips.push(new Trip(this.map, trip));
     });
+  }
+
+  setColor (e) {
+    this.trips.forEach(trip => {
+      trip.colorByAttribute(e.target.value);
+    })
   }
 
   stop () {
@@ -80,39 +85,12 @@ $(() => {
 
   const stopButton = document.getElementById('stop');
   stopButton.addEventListener('click', citiBikeViz.stop.bind(citiBikeViz));
-  //
-  // const defaultToggle = document.getElementById('default');
-  // defaultToggle.addEventListener('click', () => {
-  //   // citiBikeViz.colorByGender = false;
-  //   // citiBikeViz.colorByAge = false;
-  //   // citiBikeViz.restart();
-  //   genderLegend.style.display = 'none';
-  //   legend.style.display = 'none';
-  // })
 
-  // const genderToggle = document.getElementById('gender');
-  // const genderLegend = document.getElementById('gender-legend');
-  // genderToggle.addEventListener('click', () => {
-  //   // citiBikeViz.colorByGender = !citiBikeViz.colorByGender;
-  //   // citiBikeViz.colorByAge = false;
-  //   // citiBikeViz.restart();
-  //   genderLegend.style.display = citiBikeViz.colorByGender ? 'block' : 'none';
-  //   legend.style.display = citiBikeViz.colorByAge ? 'block' : 'none';
-  // })
-  //
-  // const ageToggle = document.getElementById('age');
-  // ageToggle.addEventListener('click', () => {
-  //   citiBikeViz.colorByAge = !citiBikeViz.colorByAge;
-  //   // genderToggle.checked = false;
-  //   // citiBikeViz.colorByGender = false;
-  //   // citiBikeViz.restart();
-  //   legend.style.display = citiBikeViz.colorByAge ? 'block' : 'none';
-  //   genderLegend.style.display = citiBikeViz.colorByGender ? 'block' : 'none';
-  // })
+  $('form').on('change', citiBikeViz.setColor.bind(citiBikeViz));
 
   const restartButton = document.getElementById('restart');
   restartButton.addEventListener('click', citiBikeViz.restart.bind(citiBikeViz))
-  //
+
   // const speedRange = document.getElementById('speed');
   // speedRange.addEventListener('change', (e) => {
   //   citiBikeViz.speed = -(e.target.value);

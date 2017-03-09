@@ -42,23 +42,17 @@
         <button id="stop">Stop</button>
         <button id="restart">Restart</button>
         <input type="range" id="speed" min="-12" max="-1" value="-1">Speed</input>
-        <ul>
-          <li>
-            <label>
-              <input type="radio" name="options" value="default" id="default" checked>Default</input>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio" name="options" value="gender" id="gender">Color by gender</input>
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="radio"  name="options" value="age" id="age">Color by age group</input>
-            </label>
-          </li>
-        </ul>
+        <form>
+          <label>
+            <input type="radio" name="color" value="default" id="default" checked>Default</input>
+          </label>
+          <label>
+            <input type="radio" name="color" value="gender" id="gender">Color by gender</input>
+          </label>
+          <label>
+            <input type="radio"  name="color" value="age" id="age">Color by age group</input>
+          </label>
+        </form>
       </section>
 
       <footer>
