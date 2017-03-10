@@ -27,7 +27,7 @@
   top: 30px;
 }
 
-#legend, #gender-legend {
+.legend {
   display: none;
   flex-direction: column;
   border: 1px solid #333333;
