@@ -39,20 +39,27 @@
 
       <section class="options">
         <h2>Options</h2>
-        <button id="restart" disabled>Start</button>
-        <button id="pause" disabled>Pause</button>
-        <button id="resume" disabled>Resume</button>
-        <input type="time" id="time" value="00:00">Choose start time</input>
+        <ul>
+          <li>
+            Start time <input type="time" id="time" value="00:00"></input>
+          </li>
+          <li>
+            <button id="restart" disabled>Start</button>
+            <button id="pause" disabled>Pause</button>
+            <button id="resume" disabled>Resume</button>
+          </li>
+        </ul>
         <!-- <input type="range" id="speed" min="-100" max="-1" value="-1">Speed</input> -->
         <form>
+          Color by:
           <label>
             <input type="radio" name="color" value="default" checked>Default</input>
           </label>
           <label>
-            <input type="radio" name="color" value="gender">Color by gender</input>
+            <input type="radio" name="color" value="gender">Gender</input>
           </label>
           <label>
-            <input type="radio"  name="color" value="age">Color by age group</input>
+            <input type="radio"  name="color" value="age">Age group</input>
           </label>
         </form>
       </section>

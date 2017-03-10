@@ -47,8 +47,9 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #CCCCCC;
+  background-color: #3C3C3C;
   font-family: 'Cardo', serif;
+  color: white;
 }
 
 body {
@@ -58,7 +59,20 @@ body {
 ul, li {
   list-style: none;
   padding: 0;
-  text-align: left;
+  margin: 0;
+}
+
+input#time {
+  font-size: 14px;
+  font-family: 'Cardo', serif;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .left {
@@ -92,6 +106,15 @@ input, label {
 a {
   text-decoration: none;
   color: #FFFFFF;
+}
+
+i:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+i {
+  transition: 0.3s;
 }
 
 footer {
