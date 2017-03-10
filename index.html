@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Cardo|Montserrat" rel="stylesheet">
     <script src="https://use.fontawesome.com/2f18af269b.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="./moment.js"></script>
-    <script src="./papaparse.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <!-- <script src="lib/papaparse.min.js"></script> -->
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
     </script>
@@ -26,11 +26,11 @@
       firebase.initializeApp(config);
     </script>
 
-    <script src="map_style.js" charset="utf-8"></script>
-    <script src="map.js" charset="utf-8"></script>
-    <script src="trip.js" charset="utf-8"></script>
-    <script src="citi_bike_viz.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="./style.css">
+    <script src="lib/map_style.js" charset="utf-8"></script>
+    <script src="lib/map.js" charset="utf-8"></script>
+    <script src="lib/trip.js" charset="utf-8"></script>
+    <script src="lib/citi_bike_viz.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <section class="left">
@@ -40,6 +40,7 @@
       <section class="options">
         <h2>Options</h2>
         <button id="stop">Stop</button>
+        <button id="resume">Resume</button>
         <button id="restart">Restart</button>
         <input type="range" id="speed" min="-12" max="-1" value="-1">Speed</input>
         <form>
