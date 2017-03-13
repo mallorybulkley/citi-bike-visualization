@@ -8,7 +8,7 @@
     <script src="https://use.fontawesome.com/2f18af269b.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="lib/moment.js"></script>
-    <!-- <script src="lib/papaparse.min.js"></script> -->
+    <script src="lib/papaparse.min.js"></script>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
     </script>
@@ -30,6 +30,8 @@
     <script src="lib/map.js" charset="utf-8"></script>
     <script src="lib/trip.js" charset="utf-8"></script>
     <script src="lib/citi_bike_viz.js" charset="utf-8"></script>
+    <!-- <script src="lib/save_trips.js" charset="utf-8"></script> -->
+
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
@@ -62,15 +64,17 @@
             <input type="radio"  name="color" value="age">Age group</input>
           </label>
         </form>
+
       </section>
 
+      <div id="about"><h2>About<h2/></div>
       <footer>
         <section class="icons">
-          <a href="http://mallorybulkley.com"><i class="fa fa-laptop" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/mallorybulkley/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-          <a href="https://angel.co/mallory-bulkley"><i class="fa fa-angellist" aria-hidden="true"></i></a>
-          <a href="https://github.com/mallorybulkley"><i class="fa fa-github" aria-hidden="true"></i></a>
-          <a href="mailto:mallorybulkley@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+          <a href="http://mallorybulkley.com" target="_blank"><i class="fa fa-laptop" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/mallorybulkley/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://angel.co/mallory-bulkley" target="_blank"><i class="fa fa-angellist" aria-hidden="true"></i></a>
+          <a href="https://github.com/mallorybulkley" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+          <a href="mailto:mallorybulkley@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
         </section>
       </footer>
     </section>
@@ -109,5 +113,27 @@
         Unknown
       </li>
     </ul>
+
+    <section id="modal">
+      <section class="about">
+        <h2>About</h2>
+
+        <p>
+          This visualization uses publicly available Citi Bike data along with Google Maps to show Citi Bike riders on December 1, 2016.
+        </p>
+        <p>
+          Each circle on the map represents a single rider.
+        </p>
+        <p>
+          I assume that each rider follows the route recommended by Google Maps bicycling directions.
+        </p>
+        <p>
+          Citi Bike provides start/end points and the total duration for each trip, which I use to calculate the average speed for each segment of each trip.
+        </p>
+        <p>
+          For more information, check out the repo on <a href="https://github.com/mallorybulkley" target="_blank">Github</a>.
+        </p>
+      </section>
+    </section>
   </body>
 </html>
