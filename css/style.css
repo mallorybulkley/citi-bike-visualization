@@ -27,6 +27,27 @@
   top: 30px;
 }
 
+#loading {
+  display: none;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.fa-cog {
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  font-size: 2em;
+  margin: 5px;
+}
+
 .about {
   background-color: #3C3C3C;
   opacity: 1;
