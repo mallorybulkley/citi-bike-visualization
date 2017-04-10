@@ -8,9 +8,9 @@
     <script src="https://use.fontawesome.com/2f18af269b.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="lib/moment.js"></script>
-    <script src="lib/papaparse.min.js"></script>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
+    <!-- <script src="lib/papaparse.min.js"></script> -->
+    <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
     </script>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -30,6 +30,7 @@
     <script src="lib/map.js" charset="utf-8"></script>
     <script src="lib/trip.js" charset="utf-8"></script>
     <script src="lib/citi_bike_viz.js" charset="utf-8"></script>
+    <script src="lib/chart.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="./css/style.css">
   </head>
@@ -78,7 +79,7 @@
           <a href="http://mallorybulkley.com" target="_blank"><i class="fa fa-laptop" aria-hidden="true"></i></a>
           <a href="https://www.linkedin.com/in/mallorybulkley/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
           <a href="https://angel.co/mallory-bulkley" target="_blank"><i class="fa fa-angellist" aria-hidden="true"></i></a>
-          <a href="https://github.com/mallorybulkley" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+          <a href="https://github.com/mallorybulkley/citi-bike-visualization" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
           <a href="mailto:mallorybulkley@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
         </section>
       </footer>
@@ -136,13 +137,27 @@
           Citi Bike provides start/end points and the total duration for each trip, which I use to calculate the average speed for each segment of each trip.
         </p>
         <p>
-          For more information, check out the repo on <a href="https://github.com/mallorybulkley" target="_blank">Github</a>.
+          For more information, check out the repo on <a href="https://github.com/mallorybulkley/citi-bike-visualization" target="_blank">Github</a>.
         </p>
       </section>
     </section>
   </main>
-    <section>
-      <!-- Charts will go here -->
-    </section>
+  <section id="chart">
+    <h2>Summary</h2>
+    <svg width="960" height="500"></svg>
+    <br/>
+    The chart above displays aggregate data from all trips taken on December 1, 2016.
+    <br/>
+    X-Axis: <select id="x-axis" name="x-axis">
+      <option value="Gender">Gender</option>
+      <option value="Birth Year">Age</option>
+    </select>
+    Y-Axis: <select id="y-axis" name="y-axis">
+      <option value="Trip Duration">Trip Duration</option>
+      <option value="Birth Year">Age</option>
+      <option value="Count">Number of Trips</option>
+    </select>
+    <button type="button" id="go">Go</button>
+  </section>
   </body>
 </html>
