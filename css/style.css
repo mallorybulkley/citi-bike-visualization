@@ -23,6 +23,11 @@ main {
   transition: 0.3s;
 }
 
+#chart {
+  margin: 50px;
+  text-align: center;
+}
+
 #clock {
   position: absolute;
   right: 0%;
@@ -133,6 +138,10 @@ input#time {
   margin-bottom: 10px;
   border: none;
   padding: 5px;
+}
+
+svg {
+  background-color: white;
 }
 
 ul, li {

@@ -8,7 +8,8 @@
     <script src="https://use.fontawesome.com/2f18af269b.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="lib/moment.js"></script>
-    <script src="lib/papaparse.min.js"></script>
+    <!-- <script src="lib/papaparse.min.js"></script> -->
+    <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQc22btIuM25T3-OZWUc_xmU_0N6ADyvE&libraries=geometry,visualization">
     </script>
@@ -30,6 +31,7 @@
     <script src="lib/map.js" charset="utf-8"></script>
     <script src="lib/trip.js" charset="utf-8"></script>
     <script src="lib/citi_bike_viz.js" charset="utf-8"></script>
+    <script src="lib/chart.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="./css/style.css">
   </head>
@@ -141,8 +143,8 @@
       </section>
     </section>
   </main>
-    <section>
-      <!-- Charts will go here -->
-    </section>
+  <section id="chart">
+    <svg width="960" height="500"></svg>
+  </section>
   </body>
 </html>
