@@ -1,8 +1,31 @@
-#map {
+html, body {
   height: 100%;
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #3C3C3C;
+  font-family: 'Cardo', serif;
+  color: white;
+}
+
+main {
+  display: flex;
+}
+
+#about {
+  cursor: pointer;
+  transition: 0.3s;
+  width: 25%;
   margin: 0 auto;
-  position: relative;
+}
+
+#about:hover {
+  color: #CCC;
+  transition: 0.3s;
+}
+
+#chart {
+  margin: 50px;
+  text-align: center;
 }
 
 #clock {
@@ -27,6 +50,152 @@
   top: 30px;
 }
 
+#loading {
+  display: none;
+  margin-bottom: 15px;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#modal {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+button {
+  border: 0;
+  background-color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #CCC;
+  transition: 0.3s;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+i {
+  transition: 0.3s;
+}
+
+i:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+input, label {
+  cursor: pointer;
+  vertical-align: center;
+}
+
+
+input#time {
+  font-size: 14px;
+  font-family: 'Cardo', serif;
+  margin-bottom: 10px;
+  border: none;
+  padding: 5px;
+}
+
+svg {
+  background-color: white;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about {
+  background-color: #3C3C3C;
+  opacity: 1;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%;
+  z-index: 2;
+}
+
+.blue {
+  color: blue;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-cog {
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  font-size: 2em;
+  margin: 5px;
+}
+
+.green {
+  color: green;
+}
+
+.icons {
+  font-size: 1.5em;
+}
+
+.left {
+  width: 66%;
+  margin: 25px;
+  position: relative;
+  text-align: center;
+}
+
 .legend {
   display: none;
   flex-direction: column;
@@ -43,76 +212,14 @@
   font-size: small;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #CCCCCC;
-  font-family: 'Cardo', serif;
-}
-
-body {
-  display: flex;
-}
-
-ul, li {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-}
-
-.left {
-  width: 66%;
-  margin: 25px;
-  position: relative;
-  text-align: center;
-}
-
-.options {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-h1 {
-  text-align: center;
-  font-size: 2em;
-  font-family: 'Montserrat', sans-serif;
-}
-
-h2 {
-  font-size: 1.5em;
-  font-family: 'Montserrat', sans-serif;
-}
-
-input, label {
-  cursor: pointer;
-  vertical-align: center;
-}
-
-a {
-  text-decoration: none;
-  color: #FFFFFF;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  font-size: 2em;
-}
-
 .magenta {
   color: magenta;
 }
 
-.blue {
-  color: blue;
-}
 
-.green {
-  color: green;
+.options {
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .red {
