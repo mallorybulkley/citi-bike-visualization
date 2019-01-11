@@ -3,6 +3,8 @@ Who uses Citi Bike? Where do they go? [*A Day in the Life of Citi Bike*](http://
 
 **Update 4/10/17:** Now includes interactive D3.js chart with aggregate data
 
+**Update 12/2/18:** Presented at Transit Techies NYC [(video)](https://www.youtube.com/watch?v=pp2cy0DaEsA)
+
 [Live](http://mallorybulkley.com/citi-bike-visualization)
 
 
