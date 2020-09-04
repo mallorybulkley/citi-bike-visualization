@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "d3": "^4.7.4",
-    "papaparse": "^4.1.4",
+    "papaparse": "^5.2.0",
     "webpack": "^3.0.0"
   },
   "devDependencies": {
