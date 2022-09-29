@@ -4,7 +4,7 @@
   "description": "Visualization of Citi Bike trips in NYC",
   "main": "index.js",
   "dependencies": {
-    "d3": "^4.7.4",
+    "d3": "^7.6.1",
     "papaparse": "^4.1.4",
     "webpack": "^3.0.0"
   },
